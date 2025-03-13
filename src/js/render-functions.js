@@ -9,7 +9,7 @@ export function renderGallery(images) {
     const markup = images.map(image => `
         <li class="gallery-item">
             <a class="gallery-link" href="${image.largeImageURL}">
-                <img src="${image.previewURL}" alt="${image.tags}" width="360" height="240" />
+                <img src="${image.webformatURL}" alt="${image.tags}" width="360" height="240" />
             </a>
             <div class="description">
                 <p class="gallery-item-text">Likes</p>
