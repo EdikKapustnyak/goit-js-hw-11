@@ -4,7 +4,8 @@ import "izitoast/dist/css/iziToast.min.css";
 import { renderGallery } from './render-functions';
 
 const form = document.querySelector('.form');
-form.addEventListener('submit', findImg);
+const loader = document.querySelector('.loader')
+// form.addEventListener('submit', findImg);
 
 export function findImg(event) { 
     event.preventDefault();
@@ -18,7 +19,7 @@ export function findImg(event) {
         });
         return;
     }
-
+    loader.classList.remove('visually-hidden');
     getRequest(getInputValue)
         .then(response => {
             if (response.data.hits.length === 0) { 
@@ -37,7 +38,8 @@ export function findImg(event) {
                 title: 'Error',
                 message: 'Sorry, there was an error processing your request. Please try again!'
             });
-        });
+        })
+        .finally(() => loader.classList.add('visually-hidden'));
 }
 
 export function getRequest(request) {
